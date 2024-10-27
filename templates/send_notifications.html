@@ -1,0 +1,117 @@
+<!doctype html>
+<title>Send Notifications - Early Alert System</title>
+<link href="https://fonts.googleapis.com/css?family=Unkempt" rel="stylesheet">
+<style>
+  body {
+    background-color: #f0f0f0; /* Light background for contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Fill the entire viewport height */
+    margin: 0; /* Remove default margin */
+  }
+  .myForm > * {
+    font: 1.4em 'Unkempt', sans-serif;
+  }
+  .myForm {
+    display: grid;
+    grid-template-columns: [labels] auto [controls] 1fr;
+    grid-auto-flow: row;
+    grid-gap: .8em .5em;
+    background: beige;
+    padding: 1.2em;
+    width: 50em; /* Increase width for a larger form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    border-radius: 8px; /* Optional rounded corners */
+  }
+  .myForm > label,
+  .myForm > fieldset {
+    grid-column: labels;
+    grid-row: auto;
+  }
+  .myForm > input,
+  .myForm > select,
+  .myForm > textarea {
+    grid-column: controls;
+    grid-row: auto;
+    padding: .4em;
+    border: 0;
+  }
+  .myForm > fieldset,
+  .myForm > button {
+    grid-column: span 2;
+  }
+  .myForm > button {
+    padding: 1em;
+    background: darkkhaki;
+    border: 0;
+    color: #ffffff;
+  }
+  .myForm > textarea {
+    min-height: 3em;
+  }
+
+  /* Navigation Box Styling */
+  .nav-box {
+    position: absolute; /* Position it absolutely */
+    top: 15px; /* Adjust top position to lower it */
+    left: 20px; /* Align it to the left */
+    padding: 2px 5px; /* Reduced padding for a smaller box */
+    width: 150px; /* Set a specific width */
+    background-color: #ffffff; /* Background for the navigation box */
+    border-radius: 7px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Center the text inside the box */
+  }
+
+  /* Navigation Button Styling */
+  button {
+    padding: 5px 8px; /* Adjusted padding for a smaller button */
+    font-size: 0.9em; /* Slightly smaller font size */
+    cursor: pointer;
+    background-color: #6e754c;
+    border: none;
+    color: #ebf3b1;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block; /* Make button take full width */
+    margin-top: 3px; /* Space above the button */
+  }
+
+  button:hover {
+    background-color: #734c3b; /* Hover effect */
+  }
+</style>
+<body>
+  <div class="nav-box">
+    <h2>Navigation</h2>
+    <a href="{{ url_for('index') }}"><button>Dashboard</button></a>
+    <!-- Other navigation links -->
+  </div>
+
+  <form class="myForm">
+    <label for="student_name">Student Name </label>
+    <input type="text" name="student_name" id="student_name" required>
+
+    <label for="student_email">Student Email </label>
+    <input type="email" name="student_email" id="student_email" required>
+
+    <fieldset>
+      <legend>Select Notification Type</legend>
+      <label> <input type="radio" name="notification_type" id="academic_support" required value="academic_support"> Academic Support </label>
+      <label> <input type="radio" name="notification_type" id="counseling" required value="counseling"> Counseling Services </label>
+      <label> <input type="radio" name="notification_type" id="reminder" required value="reminder"> Reminder </label>
+    </fieldset>
+
+    <label for="notification_message">Notification Message</label>
+    <textarea name="notification_message" id="notification_message" maxlength="500" placeholder="Enter your message here..."></textarea>
+
+    <button type="submit">Send Notification</button>
+  </form>
+</body>
+
+    </form>
+</body>
+</html>
+
+

@@ -1,0 +1,189 @@
+<!doctype html>
+<title>Early Alert System</title>
+<style>
+  /* Existing CSS styling here */
+  body {
+    display: grid;
+    grid-template-areas:
+      "header header header"
+      "nav article alerts"
+      "nav footer footer";
+    grid-template-rows: 80px 1fr 70px;
+    grid-template-columns: 20% 1fr 20%;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    height: 100vh;
+    margin: 0;
+  }
+
+  header, footer, article, nav, div {
+    padding: 1.2em;
+    background: #3d3d3d; /* Dark gray */
+    color: #f2ffae;
+    border-radius: 8px;
+  }
+
+  #pageHeader {
+    grid-area: header;
+    text-align: center;
+    background-color: #4f5a23;
+  }
+
+  #pageFooter {
+    grid-area: footer;
+    text-align: center;
+    background-color: #59653a;
+  }
+
+  #mainArticle {
+    grid-area: article;
+    display: flex; /* Added to allow side-by-side layout */
+    justify-content: space-between; /* Space between sections */
+  }
+
+  #mainNav {
+    grid-area: nav;
+  }
+
+  #recentAlerts {
+    grid-area: alerts;
+    background: #3d3d3d;
+  }
+
+  button {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    background-color: #6e754c;
+    border: none;
+    color: #ebf3b1;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #734c3b;
+  }
+
+  .metrics-summary, .resources-section {
+    width: 48%; /* Adjust width to fit side by side */
+  }
+
+  .resources-section ul, #alertsList {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove default padding */
+  }
+
+  .resources-section li, #alertsList li {
+    margin: 5px 0; /* Space between list items */
+    padding: 8px; /* Padding for list items */
+    background: #4f5a23; /* Match background to header */
+    border-radius: 5px; /* Rounded corners */
+  }
+
+  .resources-section a, #alertsList a {
+    color: #f0fbb9; /* Link color */
+    text-decoration: none; /* Remove underline */
+  }
+
+  .resources-section a:hover, #alertsList a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+
+  @media all and (max-width: 575px) {
+    body {
+      grid-template-areas:
+        "header"
+        "article"
+        "alerts"
+        "nav"
+        "footer";
+      grid-template-rows: 80px 1fr 1fr 1fr 70px;
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-summary, .resources-section {
+      width: 100%; /* Full width on smaller screens */
+    }
+  }
+</style>
+
+<body>
+  <!-- Header Section -->
+  <header id="pageHeader">
+    <h1>Early Alert System</h1>
+    <p>Manage, track, and support students proactively.</p>
+  </header>
+
+  <!-- Navigation Links -->
+  <nav id="mainNav">
+    <h2>Navigation</h2>
+    <a href="{{ url_for('index') }}"><button>Dashboard</button></a>
+    <a href="{{ url_for('analyze_data') }}"><button>Analyze Data</button></a>
+    <a href="{{ url_for('send_notifications') }}"><button>Send Notifications</button></a>
+    <a href="{{ url_for('view_reports') }}"><button>View Reports</button></a>
+  </nav>
+
+  <!-- Main Article / Dashboard Area -->
+  <article id="mainArticle">
+    <div class="metrics-summary">
+      <h2>Dashboard Overview</h2>
+      <div>
+        <h3>Total Students: <span id="totalStudents">1500</span></h3>
+        <h3>At-Risk Students: <span id="atRiskStudents">200</span></h3>
+        <h3>Notifications Sent: <span id="notificationsSent">175</span></h3>
+      </div>
+
+      <!-- New Metrics Section -->
+      <div class="key-metrics">
+        <h3>Key Metrics Summary</h3>
+        <p><strong>Average Attendance:</strong> <span id="averageAttendance">85%</span></p>
+        <p><strong>Average Grade:</strong> <span id="averageGrade">B</span></p>
+        <p><strong>Support Requests:</strong> <span id="supportRequests">50</span></p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div class="resources-section">
+      <h2>Resources</h2>
+      <ul>
+        <li><a href="#">Academic Support Services</a></li>
+        <li><a href="#">Mental Health Resources</a></li>
+        <li><a href="#">Tutoring Center</a></li>
+        <li><a href="#">Counseling Services</a></li>
+        <li><a href="#">Career Services</a></li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Recent Alerts Section -->
+  <div id="recentAlerts">
+    <h2>Recent Alerts</h2>
+    <ul id="alertsList">
+      <li><a href="#">Jane Smith - Missed 3 consecutive classes</a></li>
+      <li><a href="#">Emily Clark - Drop in academic performance</a></li>
+      <li><a href="#">Robert Lee - Low engagement detected</a></li>
+      <li><a href="#">Sarah Johnson - Not attending office hours</a></li>
+      <li><a href="#">Michael Brown - Recent drop in grades</a></li>
+      <li><a href="#">Anna White - Failing quiz scores</a></li>
+      <li><a href="#">David Wilson - No participation in discussions</a></li>
+      <li><a href="#">Sophia Garcia - Missing assignments</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer Section -->
+  <footer id="pageFooter">
+    <p>&copy; 2024 Early Alert System</p>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+

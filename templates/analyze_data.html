@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Data</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center; /* Center the title */
+            margin-bottom: 20px; /* Add space below the title */
+        }
+
+        /* Navigation Box Styling */
+        .nav-box {
+            position: absolute; /* Position it absolutely */
+            top: 15px; /* Adjust top position to lower it */
+            left: 20px; /* Align it to the left */
+            padding: 2px 5px; /* Reduced padding for a smaller box */
+            width: 150px; /* Set a specific width */
+            background-color: #ffffff; /* Background for the navigation box */
+            border-radius: 7px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Center the text inside the box */
+        }
+
+        /* Navigation Button Styling */
+        button {
+            padding: 5px 8px; /* Adjusted padding for a smaller button */
+            font-size: 0.9em; /* Slightly smaller font size */
+            cursor: pointer;
+            background-color: #6e754c;
+            border: none;
+            color: #ebf3b1;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            display: block; /* Make button take full width */
+            margin-top: 3px; /* Space above the button */
+        }
+
+        button:hover {
+            background-color: #734c3b; /* Hover effect */
+        }
+
+        /* Grid wrapper and layout */
+        .wrapper {
+            display: grid;
+            grid-template-areas:
+                "header header header"
+                "table graphics side"
+                "footer footer footer";
+            grid-template-columns: 2fr 2fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .table-box {
+            grid-area: table;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .graphics-box {
+            grid-area: graphics;
+            display: grid;
+            gap: 10px;
+        }
+
+        .graph-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .graph-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .side-box {
+            grid-area: side;
+            background-color: #e2e2e2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Change to flex-start */
+            align-items: center;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Adjust paragraph styling */
+        .side-box p {
+            margin: 0; /* Remove top margin */
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-box">
+        <h2>Navigation</h2>
+        <a href="{{ url_for('index') }}"><button>Dashboard</button></a>
+        <!-- Other navigation links -->
+    </div>
+
+    <h1>Student Analysis Data</h1>
+
+    <div class="wrapper">
+        <!-- Table Section -->
+        <div class="table-box">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Attendance (%)</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>John Doe</td><td>85</td><td>B</td></tr>
+                    <tr><td>Jane Smith</td><td>92</td><td>A</td></tr>
+                    <tr><td>Emily Clark</td><td>78</td><td>C</td></tr>
+                    <tr><td>Michael Johnson</td><td>88</td><td>B+</td></tr>
+                    <tr><td>Linda White</td><td>95</td><td>A</td></tr>
+                    <tr><td>James Brown</td><td>73</td><td>C-</td></tr>
+                    <tr><td>Patricia Garcia</td><td>81</td><td>B-</td></tr>
+                    <tr><td>Robert Lee</td><td>76</td><td>C</td></tr>
+                    <tr><td>Jennifer Wilson</td><td>90</td><td>A-</td></tr>
+                    <tr><td>William Martinez</td><td>67</td><td>D+</td></tr>
+                    <tr><td>Elizabeth Anderson</td><td>84</td><td>B</td></tr>
+                    <tr><td>Thomas Taylor</td><td>79</td><td>C+</td></tr>
+                    <tr><td>Jessica Harris</td><td>94</td><td>A</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Graphics Section with Graphs -->
+        <div class="graphics-box">
+            <div class="graph-container">
+                <div class="graph-item">
+                    <h3>Students at Risk Over Academic Year</h3>
+                    <canvas id="myCanvas" width="350" height="350"></canvas>
+                </div>
+                <div class="graph-item">
+                    <h3>Factors Contributing to Student Dropout</h3>
+                    <canvas id="pieCanvas" width="350" height="350"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Info Box with Explanation -->
+        <div class="side-box">
+            <p>
+                The "Students at Risk Over Academic Year" line chart illustrates the trends in student performance and engagement, identifying periods of high-risk dropouts. This data may reflect fluctuations due to seasonal academic challenges, midterms, or personal circumstances. Peaks in risk indicators could suggest times when additional academic support and intervention are beneficial, especially for students with historically lower attendance or grades. <br><br>
+                The "Factors Contributing to Student Dropout" pie chart shows the distribution of primary reasons for students leaving. This data highlights key areas such as financial difficulties, academic challenges, and personal issues, which collectively emphasize the importance of accessible resources and support systems within educational institutions. By analyzing these factors, schools can prioritize outreach and resources to improve student retention, especially by targeting high-impact areas identified in the chart.
+            </p>
+        </div>
+    </div>
+
+    <script src="static/js/lineChart.js"></script>
+    <script src="static/js/pieChart.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
